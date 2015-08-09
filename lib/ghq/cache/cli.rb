@@ -9,6 +9,7 @@ module Ghq
 
       desc 'log PATH', 'Log your repository access'
       def log(path)
+        Logger.log(path)
       end
     end
   end

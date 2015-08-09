@@ -23,6 +23,7 @@ ghq-cache log /Users/k0kubun/src/github.com/k0kubun/ghq-cache
 ### Recommended usage
 
 ```bash
+export GOPATH=$HOME
 export GHQ="/usr/local/bin/ghq"
 
 function ghq() {
