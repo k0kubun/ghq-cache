@@ -14,10 +14,10 @@ gem install ghq-cache
 ```bash
 # Build `ghq list` cache to ~/.ghq-cache
 # with ordering of host, user or repositories.
-ghq-cache create
+ghq-cache refresh
 
-# Log your repository usage to update ~/.ghq-cache order.
-ghq-cache log
+# Log your repository access to update ~/.ghq-cache order.
+ghq-cache log /Users/k0kubun/src/github.com/k0kubun/ghq-cache
 ```
 
 ### Recommended usage
@@ -31,11 +31,11 @@ function ghq() {
       $GHQ $@
 
       # hook after ghq get
-      ghq-cache create &
+      ghq-cache refresh &
       ;;
     list )
       if [ ! -e ~/.ghq-cache ]; then
-        ghq-cache create
+        ghq-cache refresh
       fi
 
       # use ghq list ordered by ghq-cache
