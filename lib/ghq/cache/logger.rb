@@ -3,7 +3,7 @@ require 'yaml'
 module Ghq
   module Cache
     class Logger
-      LOG_PATH = File.expand_path('~/.ghq-cahe.log')
+      LOG_PATH = File.expand_path('~/.ghq-cache.log')
 
       class << self
         def log(path)
