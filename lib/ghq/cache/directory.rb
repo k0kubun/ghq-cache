@@ -8,7 +8,7 @@ module Ghq
       end
 
       def count_path(path)
-        raise "Path didn't matched to Directory" unless path =~ /^#{name}/
+        abort "Path didn't matched to Directory" unless path =~ /^#{name}/
         self.count += 1
 
         relative_path = path.gsub(%r[^#{name}/?], '')
@@ -16,6 +16,20 @@ module Ghq
 
         child = create_or_find(relative_path.split('/').first)
         child.count_path(relative_path)
+      end
+
+      def register_path(path)
+        abort "Path didn't matched to Directory" unless path =~ /^#{name}/
+
+        relative_path = path.gsub(%r[^#{name}/?], '')
+        return if relative_path.empty?
+
+        child = create_or_find(relative_path.split('/').first)
+        child.register_path(relative_path)
+      end
+
+      def root?
+        self.name.include?('/')
       end
 
       private

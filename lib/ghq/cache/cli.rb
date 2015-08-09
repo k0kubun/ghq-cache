@@ -5,6 +5,7 @@ module Ghq
     class CLI < Thor
       desc 'refresh', 'Refresh ~/.ghq-cache'
       def refresh
+        Builder.build
       end
 
       desc 'log PATH', 'Log your repository access'
