@@ -20,6 +20,11 @@ module Ghq
         FileUtils.rm_f(Logger::LOG_PATH)
         FileUtils.rm_f(Builder::CACHE_PATH)
       end
+
+      desc 'stats', 'Show the statistics of your repository usage'
+      def stats
+        Stats.print_repository_usage
+      end
     end
   end
 end
