@@ -40,9 +40,9 @@ module Ghq
         self.name.include?('/')
       end
 
-      def full_path
-        return name unless parent
-        File.join(parent.full_path, name)
+      def path_from_root
+        return name if parent.nil? || parent.root?
+        File.join(parent.path_from_root, name)
       end
 
       private

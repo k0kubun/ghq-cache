@@ -17,7 +17,7 @@ module Ghq
           dirs = flatten(root).sort_by do |dir|
             sort_key(dir)
           end.reverse
-          cache = dirs.map(&:full_path).join("\n").concat("\n")
+          cache = dirs.map(&:path_from_root).join("\n").concat("\n")
           File.write(CACHE_PATH, cache)
         end
 
