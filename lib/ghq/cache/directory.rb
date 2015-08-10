@@ -1,6 +1,6 @@
 module Ghq
   module Cache
-    class Directory < Struct.new(:name, :count, :children)
+    class Directory < Struct.new(:name, :count, :children, :parent)
       def initialize(*)
         super
         self.count ||= 0
@@ -50,6 +50,7 @@ module Ghq
 
         child = Directory.new(child_name)
         self.children << child
+        child.parent = self
         child
       end
     end
