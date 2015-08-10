@@ -28,6 +28,14 @@ module Ghq
         child.register_path(relative_path)
       end
 
+      def remove_path(path)
+        relative_path = path.gsub(%r[^#{name}/?], '')
+        return if relative_path.empty?
+
+        child = create_or_find(relative_path.split('/').first)
+        children.delete(child)
+      end
+
       def root?
         self.name.include?('/')
       end

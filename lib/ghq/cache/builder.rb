@@ -7,6 +7,9 @@ module Ghq
       class << self
         def build
           root = Logger.resume
+          obsolete_paths.each do |path|
+            root.remove_path(path)
+          end
           ghq_list.each do |path|
             root.register_path(File.join(root.name, path))
           end
@@ -16,6 +19,16 @@ module Ghq
         end
 
         private
+
+        def obsolete_paths
+          cached_paths =
+            if File.exist?(CACHE_PATH)
+              File.read(CACHE_PATH).split("\n")
+            else
+              []
+            end
+          cached_paths - ghq_list
+        end
 
         def ghq_list
           `#{GHQ_PATH} list`.split("\n")
