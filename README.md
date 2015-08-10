@@ -25,6 +25,7 @@ ghq-cache log /Users/k0kubun/src/github.com/k0kubun/ghq-cache
 ```bash
 export GOPATH=$HOME
 export GHQ="/usr/local/bin/ghq"
+export GIT="/usr/local/bin/git"
 
 function ghq() {
   case $1 in
@@ -46,6 +47,22 @@ function ghq() {
       $GHQ $@
       ;;
   esac
+}
+
+function git() {
+	case $1 in
+		init )
+			$GIT $@
+			(ghq-cache refresh &)
+			;;
+		clone )
+			$GIT $@
+			(ghq-cache refresh &)
+			;;
+		* )
+			$GIT $@
+			;;
+	esac
 }
 
 function peco-src() {
