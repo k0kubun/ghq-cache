@@ -1,4 +1,5 @@
 require 'thor'
+require 'fileutils'
 
 module Ghq
   module Cache
@@ -16,8 +17,8 @@ module Ghq
 
       desc 'purge', 'Delete ~/.ghq-cache and ~/.ghq-cache.log'
       def purge
-        File.rm_f(Logger::LOG_PATH)
-        File.rm_f(Builder::CACHE_PATH)
+        FileUtils.rm_f(Logger::LOG_PATH)
+        FileUtils.rm_f(Builder::CACHE_PATH)
       end
     end
   end
