@@ -40,6 +40,11 @@ module Ghq
         self.name.include?('/')
       end
 
+      def full_path
+        return name unless parent
+        File.join(parent.full_path, name)
+      end
+
       private
 
       def create_or_find(child_name)
