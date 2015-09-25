@@ -4,10 +4,11 @@ require 'fileutils'
 module Ghq
   module Cache
     class CLI < Thor
-      desc 'refresh', 'Refresh ~/.ghq-cache'
-      def refresh
+      desc 'update', 'Update ~/.ghq-cache'
+      def update
         Builder.build
       end
+      alias :refresh :update
 
       desc 'log PATH', 'Log your repository access'
       def log(path)
