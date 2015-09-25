@@ -14,7 +14,7 @@ gem install ghq-cache
 ```bash
 # Build `ghq list` cache to ~/.ghq-cache
 # with ordering of host, user or repositories.
-ghq-cache refresh
+ghq-cache update
 
 # Log your repository access to update ~/.ghq-cache order.
 ghq-cache log /Users/k0kubun/src/github.com/k0kubun/ghq-cache
@@ -33,11 +33,11 @@ function ghq() {
       $GHQ $@
 
       # hook after ghq get
-      (ghq-cache refresh &)
+      (ghq-cache update &)
       ;;
     list )
       if [ ! -e ~/.ghq-cache ]; then
-        ghq-cache refresh
+        ghq-cache update
       fi
 
       # use ghq list ordered by ghq-cache
@@ -53,11 +53,11 @@ function git() {
 	case $1 in
 		init )
 			$GIT $@
-			(ghq-cache refresh &)
+			(ghq-cache update &)
 			;;
 		clone )
 			$GIT $@
-			(ghq-cache refresh &)
+			(ghq-cache update &)
 			;;
 		* )
 			$GIT $@

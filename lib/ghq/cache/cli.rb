@@ -12,7 +12,7 @@ module Ghq
       desc 'log PATH', 'Log your repository access'
       def log(path)
         Logger.log(path)
-        refresh
+        update
       end
 
       desc 'purge', 'Delete ~/.ghq-cache and ~/.ghq-cache.log'
